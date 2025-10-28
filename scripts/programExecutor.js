@@ -46,7 +46,8 @@ export const ProgramExecutor = {
         } finally {
             const wasRunning = GameState.isRunning;
             GameState.isRunning = false;
-            this.checkWin(true, wasRunning);
+            // ОНОВЛЕНО: Додано await, оскільки checkWin тепер async
+            await this.checkWin(true, wasRunning);
         }
     },
 
@@ -81,7 +82,8 @@ export const ProgramExecutor = {
                 HapticFeedback.light();
             }
 
-            if (this.checkWin()) return;
+            // ОНОВЛЕНО: Додано await, оскільки checkWin тепер async
+            if (await this.checkWin()) return;
         }
     },
 
@@ -117,8 +119,15 @@ export const ProgramExecutor = {
         }
     },
 
-    checkWin(isFinalCheck = false, wasRunning = true) {
+    // ОНОВЛЕНО: Функція стала async
+    async checkWin(isFinalCheck = false, wasRunning = true) {
         if (GameState.heroPos.x === GameState.finishPos.x && GameState.heroPos.y === GameState.finishPos.y) {
+            
+            // ОНОВЛЕНО: Додаємо затримку, щоб гравець побачив, що дійшов
+            // Встановлюємо isRunning в false, щоб зупинити подальше виконання, але modal ще не показуємо
+            GameState.isRunning = false; 
+            await Utils.sleep(500); // 500мс затримка
+
             const hasEnoughStrength = GameState.currentStrength > GameState.monsterStrength;
             const hasEnoughWeapon = GameState.currentWeapon >= GameState.monsterDefense;
 
@@ -218,7 +227,7 @@ export const ProgramExecutor = {
                 ModalManager.show('😢 Поразка', errorMsg, 'error');
                 HapticFeedback.error();
             }
-            GameState.isRunning = false;
+            // GameState.isRunning = false; // ВИДАЛЕНО: Перенесено вище
             return true;
         }
 
@@ -230,4 +239,5 @@ export const ProgramExecutor = {
         return false;
     }
 };
+
 
