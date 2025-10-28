@@ -22,56 +22,45 @@ export const GridRenderer = {
 
     createCell(x, y) {
         const cell = document.createElement('div');
-        // ОНОВЛЕНО: Змінено базовий фон на світліший
-        cell.className = 'cell w-full h-full bg-gray-50 flex items-center justify-center transition-colors';
+        cell.className = 'cell w-full h-full bg-gray-100 flex items-center justify-center transition-colors text-2xl md:text-3xl'; // Збільшено розмір емодзі
         cell.dataset.x = x;
         cell.dataset.y = y;
 
         const itemKey = `${x},${y}`;
 
-        // ОНОВЛЕНО: Герой (Емодзі)
         if (x === GameState.heroPos.x && y === GameState.heroPos.y) {
-            cell.classList.add('bg-blue-100');
-            cell.innerHTML = '👱‍♂️'; // 'fa-solid fa-user-shield'
+            cell.classList.add('bg-blue-100'); // Світліший фон
+            cell.innerHTML = '👱‍♂️';
             return cell;
         }
 
-        // ОНОВЛЕНО: Фініш/Монстр (Емодзі)
         if (x === GameState.finishPos.x && y === GameState.finishPos.y) {
-            cell.classList.add('bg-red-200');
+            cell.classList.add('bg-red-200'); // Світліший фон
             if (GameState.isRunning) cell.classList.add('pulse-hint');
-            cell.innerHTML = '🐉'; // 'fa-solid fa-dragon'
+            cell.innerHTML = '🐉';
             return cell;
         }
 
         if (GameState.isObstacle(x, y)) {
             const obstacle = GameState.obstacles.find(obs => obs.x === x && obs.y === y);
-            
-            // ОНОВЛЕНО: Дерево (Емодзі)
             if (obstacle?.type === 'tree') {
-                cell.classList.add('bg-green-100');
-                cell.innerHTML = '🌳'; // 'fa-solid fa-tree'
-            
-            // ОНОВЛЕНО: Камінь/Гора (Емодзі)
+                cell.classList.add('bg-green-200'); // Світліший фон
+                cell.innerHTML = '🌳';
             } else if (obstacle?.type === 'rock') {
-                cell.classList.add('bg-gray-300');
-                cell.innerHTML = '⛰️'; // 'fa-solid fa-mountain'
+                cell.classList.add('bg-gray-300'); // Світліший фон
+                cell.innerHTML = '⛰️';
             }
             return cell;
         }
 
         if (!GameState.collectedItems.has(itemKey)) {
             const foundItem = GameState.items.find(item => item.x === x && item.y === y);
-            
-            // ОНОВЛЕНО: Сила (Емодзі)
             if (foundItem?.type === 'strength') {
-                cell.classList.add('bg-yellow-100');
-                cell.innerHTML = '⚡'; // 'fa-solid fa-bolt'
-            
-            // ОНОВЛЕНО: Зброя (Емодзі)
+                cell.classList.add('bg-yellow-100'); // Світліший фон
+                cell.innerHTML = '⚡';
             } else if (foundItem?.type === 'weapon') {
-                cell.classList.add('bg-gray-200');
-                cell.innerHTML = '🗡️'; // 'fa-solid fa-gavel'
+                cell.classList.add('bg-gray-200'); // Світліший фон
+                cell.innerHTML = '🗡️';
             }
         }
 
@@ -80,7 +69,7 @@ export const GridRenderer = {
 
     updateStats() {
         if (DOM.weapon) DOM.weapon.textContent = GameState.currentWeapon;
-        if (DOM.position) DOM.position.textContent = `(${GameState.heroPos.x},${GameState.heroPos.y})`;
+        // if (DOM.position) DOM.position.textContent = `(${GameState.heroPos.x},${GameState.heroPos.y})`; // ВИДАЛЕНО
         if (DOM.strength) DOM.strength.textContent = GameState.currentStrength;
         if (DOM.currentLevelSpan) DOM.currentLevelSpan.textContent = GameState.currentLevel;
 
@@ -95,3 +84,4 @@ export const GridRenderer = {
         }
     }
 };
+
