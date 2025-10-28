@@ -92,7 +92,7 @@ body {
 }
 
 /* Адаптивна сітка */
-.grid {
+.grid-container .grid {
     max-width: min(90vw, 500px);
     aspect-ratio: 1;
 }
