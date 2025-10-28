@@ -30,9 +30,13 @@ export const ProgramExecutor = {
         GridRenderer.render();
         HapticFeedback.medium();
 
-        const gridContainer = document.querySelector('.grid-container');
-        gridContainer?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ОНОВЛЕНО: Виконуємо авто-скрол тільки на мобільних (lg: < 1024px)
+        if (window.innerWidth < 1024) {
+            const gridContainer = document.querySelector('.grid-container');
+            gridContainer?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
+        // ВИПРАВЛЕНО: Залишено один правильний блок try...catch...finally
         try {
             await this.execute(GameState.program);
         } catch (error) {
@@ -226,3 +230,4 @@ export const ProgramExecutor = {
         return false;
     }
 };
+
