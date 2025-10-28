@@ -93,13 +93,13 @@ export const GameState = {
         if (levelInfo) {
             // ОНОВЛЕНО: Прибрано статистику монстра
             levelInfo.innerHTML = `
-                <div class="font-bold text-base mb-1">${level.name}</div>
-                <div class="text-sm mb-2">${level.description}</div>
-                ${level.tutorialText ? `<div class="text-xs italic text-indigo-600 mb-2">${level.tutorialText}</div>` : ''}
-                ${level.hint && !this.isTutorialMode ? `<div class="text-xs italic mb-2">${level.hint}</div>` : ''}
-                <div class="flex flex-wrap gap-2 text-xs">
-                    ${level.difficulty ? `<span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">📊 ${level.difficulty}</span>` : ''}
-                    ${level.optimalSteps ? `<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">🎯 Оптимум: ${level.optimalSteps} кроків</span>` : ''}
+                <div class="font-bold text-lg md:text-xl mb-2 leading-snug">${level.name}</div>
+                <div class="text-sm md:text-base mb-3 leading-relaxed">${level.description}</div>
+                ${level.tutorialText ? `<div class="text-sm md:text-base italic text-indigo-600 mb-3 leading-relaxed">${level.tutorialText}</div>` : ''}
+                ${level.hint && !this.isTutorialMode ? `<div class="text-sm md:text-base italic text-blue-800 mb-3 leading-relaxed">${level.hint}</div>` : ''}
+                <div class="flex flex-wrap gap-2 text-sm md:text-base">
+                    ${level.difficulty ? `<span class="bg-purple-100 text-purple-700 px-3 py-1.5 rounded-lg">📊 ${level.difficulty}</span>` : ''}
+                    ${level.optimalSteps ? `<span class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg">🎯 Оптимум: ${level.optimalSteps} кроків</span>` : ''}
                 </div>
             `;
         }
@@ -107,6 +107,10 @@ export const GameState = {
         // ДОДАНО: Оновлюємо нові елементи статистики монстра
         if (DOM.monsterStrengthStat) DOM.monsterStrengthStat.textContent = this.monsterStrength;
         if (DOM.monsterDefenseStat) DOM.monsterDefenseStat.textContent = this.monsterDefense;
+
+        if (DOM.currentLevelSpan) {
+            DOM.currentLevelSpan.textContent = this.currentLevel;
+        }
 
 
         if (this.currentLevel > 0.1) {
