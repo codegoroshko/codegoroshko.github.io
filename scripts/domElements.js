@@ -18,7 +18,7 @@ export const DOM = {
     monsterDefenseStat: null, // ДОДАНО
 
     cache() {
-        this.grid = document.querySelector('.grid');
+        this.grid = document.querySelector('.grid-container .grid');
         this.programArea = document.getElementById('programArea');
         this.weapon = document.getElementById('weapon');
         // this.position = document.getElementById('position'); // ВИДАЛЕНО
