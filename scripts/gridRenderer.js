@@ -22,45 +22,56 @@ export const GridRenderer = {
 
     createCell(x, y) {
         const cell = document.createElement('div');
-        cell.className = 'cell w-full h-full bg-gray-100 flex items-center justify-center transition-colors';
+        // ОНОВЛЕНО: Змінено базовий фон на світліший
+        cell.className = 'cell w-full h-full bg-gray-50 flex items-center justify-center transition-colors';
         cell.dataset.x = x;
         cell.dataset.y = y;
 
         const itemKey = `${x},${y}`;
 
+        // ОНОВЛЕНО: Герой (Емодзі)
         if (x === GameState.heroPos.x && y === GameState.heroPos.y) {
-            cell.classList.add('bg-blue-200');
-            cell.innerHTML = '<i class="fa-solid fa-user-shield text-blue-700"></i>';
+            cell.classList.add('bg-blue-100');
+            cell.innerHTML = '👱‍♂️'; // 'fa-solid fa-user-shield'
             return cell;
         }
 
+        // ОНОВЛЕНО: Фініш/Монстр (Емодзі)
         if (x === GameState.finishPos.x && y === GameState.finishPos.y) {
-            cell.classList.add('bg-red-300');
+            cell.classList.add('bg-red-200');
             if (GameState.isRunning) cell.classList.add('pulse-hint');
-            cell.innerHTML = '<i class="fa-solid fa-dragon text-red-700"></i>';
+            cell.innerHTML = '🐉'; // 'fa-solid fa-dragon'
             return cell;
         }
 
         if (GameState.isObstacle(x, y)) {
             const obstacle = GameState.obstacles.find(obs => obs.x === x && obs.y === y);
+            
+            // ОНОВЛЕНО: Дерево (Емодзі)
             if (obstacle?.type === 'tree') {
-                cell.classList.add('bg-green-600');
-                cell.innerHTML = '<i class="fa-solid fa-tree text-green-900"></i>';
+                cell.classList.add('bg-green-100');
+                cell.innerHTML = '🌳'; // 'fa-solid fa-tree'
+            
+            // ОНОВЛЕНО: Камінь/Гора (Емодзі)
             } else if (obstacle?.type === 'rock') {
-                cell.classList.add('bg-gray-400');
-                cell.innerHTML = '<i class="fa-solid fa-mountain text-gray-700"></i>';
+                cell.classList.add('bg-gray-300');
+                cell.innerHTML = '⛰️'; // 'fa-solid fa-mountain'
             }
             return cell;
         }
 
         if (!GameState.collectedItems.has(itemKey)) {
             const foundItem = GameState.items.find(item => item.x === x && item.y === y);
+            
+            // ОНОВЛЕНО: Сила (Емодзі)
             if (foundItem?.type === 'strength') {
-                cell.classList.add('bg-yellow-200');
-                cell.innerHTML = '<i class="fa-solid fa-bolt text-yellow-600"></i>';
+                cell.classList.add('bg-yellow-100');
+                cell.innerHTML = '⚡'; // 'fa-solid fa-bolt'
+            
+            // ОНОВЛЕНО: Зброя (Емодзі)
             } else if (foundItem?.type === 'weapon') {
-                cell.classList.add('bg-gray-300');
-                cell.innerHTML = '<i class="fa-solid fa-gavel text-gray-700"></i>';
+                cell.classList.add('bg-gray-200');
+                cell.innerHTML = '🗡️'; // 'fa-solid fa-gavel'
             }
         }
 
