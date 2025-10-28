@@ -91,33 +91,30 @@ export const GameState = {
     updateLevelUI(level) {
         const levelInfo = document.getElementById('levelInfo');
         if (levelInfo) {
+            // ОНОВЛЕНО: Прибрано статистику монстра
             levelInfo.innerHTML = `
                 <div class="font-bold text-base mb-1">${level.name}</div>
                 <div class="text-sm mb-2">${level.description}</div>
                 ${level.tutorialText ? `<div class="text-xs italic text-indigo-600 mb-2">${level.tutorialText}</div>` : ''}
                 ${level.hint && !this.isTutorialMode ? `<div class="text-xs italic mb-2">${level.hint}</div>` : ''}
                 <div class="flex flex-wrap gap-2 text-xs">
-                    <span class="bg-red-100 text-red-700 px-2 py-1 rounded">💪 Монстр: ${this.monsterStrength}</span>
-                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">🛡️ Захист: ${this.monsterDefense}</span>
                     ${level.difficulty ? `<span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">📊 ${level.difficulty}</span>` : ''}
                     ${level.optimalSteps ? `<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">🎯 Оптимум: ${level.optimalSteps} кроків</span>` : ''}
                 </div>
             `;
         }
 
+        // ДОДАНО: Оновлюємо нові елементи статистики монстра
+        if (DOM.monsterStrengthStat) DOM.monsterStrengthStat.textContent = this.monsterStrength;
+        if (DOM.monsterDefenseStat) DOM.monsterDefenseStat.textContent = this.monsterDefense;
+
+
         if (this.currentLevel > 0.1) {
             DOM.programArea?.classList.remove('tutorial-highlight');
         }
 
-        // const totalLevels = CONFIG.TUTORIAL_PHASES + CONFIG.TOTAL_LEVELS;
-        // const currentProgress = this.isTutorialMode
-        //     ? (this.currentLevel * 10) / totalLevels * 100
-        //     : ((CONFIG.TUTORIAL_PHASES + this.currentLevel) / totalLevels) * 100;
-        // const levelProgressBar = document.getElementById('levelProgressBar');
-        // if (levelProgressBar) {
-        //     levelProgressBar.style.width = `${currentProgress}%`;
-        // }
-
+        // ВИДАЛЕНО: Логіка прогрес-бару
+        
         const prevLevelBtn = document.getElementById('prevLevel');
         if (prevLevelBtn) {
             prevLevelBtn.disabled = this.currentLevel === 0.1;
@@ -150,3 +147,4 @@ export const GameState = {
         return this.obstacles.some(obs => obs.x === x && obs.y === y);
     }
 };
+
