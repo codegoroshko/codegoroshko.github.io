@@ -109,14 +109,14 @@ export const GameState = {
             DOM.programArea?.classList.remove('tutorial-highlight');
         }
 
-        const totalLevels = CONFIG.TUTORIAL_PHASES + CONFIG.TOTAL_LEVELS;
-        const currentProgress = this.isTutorialMode
-            ? (this.currentLevel * 10) / totalLevels * 100
-            : ((CONFIG.TUTORIAL_PHASES + this.currentLevel) / totalLevels) * 100;
-        const levelProgressBar = document.getElementById('levelProgressBar');
-        if (levelProgressBar) {
-            levelProgressBar.style.width = `${currentProgress}%`;
-        }
+        // const totalLevels = CONFIG.TUTORIAL_PHASES + CONFIG.TOTAL_LEVELS;
+        // const currentProgress = this.isTutorialMode
+        //     ? (this.currentLevel * 10) / totalLevels * 100
+        //     : ((CONFIG.TUTORIAL_PHASES + this.currentLevel) / totalLevels) * 100;
+        // const levelProgressBar = document.getElementById('levelProgressBar');
+        // if (levelProgressBar) {
+        //     levelProgressBar.style.width = `${currentProgress}%`;
+        // }
 
         const prevLevelBtn = document.getElementById('prevLevel');
         if (prevLevelBtn) {
