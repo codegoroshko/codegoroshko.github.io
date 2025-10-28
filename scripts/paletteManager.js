@@ -4,7 +4,8 @@ import { ProgramRenderer } from './programRenderer.js';
 import { HapticFeedback } from './haptics.js';
 import { DragState } from './dragState.js';
 
-const BASE_STYLES = 'flex items-center justify-center p-2 md:p-3 rounded-lg cursor-grab transition-all font-semibold text-white text-xs md:text-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95';
+// ОНОВЛЕНО: Додано 'border-b-4' для "фізичного" вигляду блоків
+const BASE_STYLES = 'flex items-center justify-center p-2 md:p-3 rounded-lg cursor-grab transition-all font-semibold text-white text-xs md:text-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95 border-b-4';
 
 export const PaletteManager = {
     setup() {
@@ -57,9 +58,11 @@ export const PaletteManager = {
 
     applyStyles(block) {
         if (block.classList.contains('loop')) {
-            block.className += ` ${BASE_STYLES} bg-pink-500 hover:bg-pink-600`;
+            // ОНОВЛЕНО: Колір циклів (pink -> red)
+            block.className += ` ${BASE_STYLES} bg-red-500 hover:bg-red-600 border-red-700`;
         } else {
-            block.className += ` ${BASE_STYLES} bg-indigo-500 hover:bg-indigo-600`;
+            // ОНОВЛЕНО: Колір команд (indigo -> blue)
+            block.className += ` ${BASE_STYLES} bg-blue-500 hover:bg-blue-600 border-blue-700`;
         }
     }
 };
