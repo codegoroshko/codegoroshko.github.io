@@ -142,6 +142,23 @@
                 font-size: 0.875rem;
             }
         }
+        
+        /* НОВЕ: горизонтальне розташування ТІЛЬКИ на дуже маленьких екранах */
+        @media (max-width: 480px) {
+            .programming-wrapper {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 0.5rem !important;
+            }
+            
+            .blocks-area {
+                width: 40% !important;
+            }
+            
+            .program-container {
+                width: 60% !important;
+            }
+        }
 
         /* Landscape орієнтація для мобільних */
         @media (max-width: 768px) and (orientation: landscape) {
@@ -261,13 +278,13 @@
             </div>
 
             <!-- Програмування -->
-            <div class="flex flex-col sm:flex-row flex-1 gap-3 md:gap-4">
+            <div class="programming-wrapper flex flex-col sm:flex-row flex-1 gap-3 md:gap-4">
                 
                 <!-- Палітра команд -->
                 <div class="blocks-area w-full sm:w-[35%] bg-gradient-to-br from-gray-50 to-gray-100 p-3 md:p-4 rounded-lg border-2 border-gray-200">
                     <div class="blocks-title text-base md:text-lg font-bold mb-3 text-gray-700 flex items-center justify-between">
                         <span><i class="fa-solid fa-box-archive mr-2"></i>Команди</span>
-                        <span class="text-xs text-gray-500">Торкайся</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Торкайся</span>
                     </div>
                     <div class="flex flex-col gap-2">
                         <div class="block haptic-light" draggable="true" data-command="up">
@@ -293,7 +310,7 @@
                         </div>
                     </div>
                 </div>
-
+            
                 <!-- Програма -->
                 <div class="program-container flex flex-col w-full sm:w-[65%]">
                     <div class="blocks-title text-base md:text-lg font-bold mb-3 text-gray-700 flex items-center justify-between">
