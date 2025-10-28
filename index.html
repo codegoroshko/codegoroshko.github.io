@@ -1496,7 +1496,7 @@
         // ====================================
 
         const TouchHandlers = {
-            handleTouchStartPalette(e) {
+handleTouchStartPalette(e) {
                 // Не блокуємо для швидкого тапу
                 const touch = e.changedTouches[0];
                 
@@ -1507,6 +1507,12 @@
                 DragState.touchStartTime = Date.now();
                 DragState.touchStartPos = { x: touch.clientX, y: touch.clientY };
                 DragState.currentTouchId = touch.identifier;
+
+                // Очистити попередній таймаут якщо є
+                if (block.dataset.tapTimeout) {
+                    clearTimeout(parseInt(block.dataset.tapTimeout));
+                    delete block.dataset.tapTimeout;
+                }
 
                 // Короткий тап = швидке додавання
                 const tapTimeout = setTimeout(() => {
