@@ -90,79 +90,87 @@ export const TUTORIAL_LEVELS = {
 
 export const MAIN_LEVELS = {
     1: {
-        name: "🎯 Випускний рівень",
-        description: "Тепер ти сам! Дістанься до монстра",
+        name: "🎯 Перший виклик",
+        description: "Обійди перешкоду та дістанься монстра",
         gridSize: 6,
         startPos: { x: 0, y: 0 },
-        finishPos: { x: 3, y: 0 },
-        startingStrength: 15,
+        finishPos: { x: 4, y: 1 },
+        startingStrength: 18,
         startingWeapon: 8,
-        monsterStrength: 10,
+        monsterStrength: 12,
         monsterDefense: 5,
-        items: [],
-        obstacles: [],
+        items: [
+            { x: 2, y: 1, type: 'strength', value: 3 }
+        ],
+        obstacles: [
+            { x: 2, y: 0, type: 'tree' }
+        ],
         allowLoops: false,
-        hint: "💡 Просто йди праворуч 3 рази!",
+        hint: "💡 Обійди дерево і збери бонус сили",
         difficulty: "Легко",
-        optimalSteps: 3
+        optimalSteps: 5
     },
     2: {
-        name: "↗️ Діагональ",
-        description: "Рухайся по діагоналі",
+        name: "↗️ Діагональний маршрут",
+        description: "Оптимальний шлях по діагоналі",
         gridSize: 6,
         startPos: { x: 0, y: 0 },
-        finishPos: { x: 2, y: 2 },
-        startingStrength: 15,
-        startingWeapon: 5,
-        monsterStrength: 10,
-        monsterDefense: 4,
+        finishPos: { x: 3, y: 3 },
+        startingStrength: 20,
+        startingWeapon: 4,
+        monsterStrength: 14,
+        monsterDefense: 5,
         items: [
-            { x: 1, y: 1, type: 'strength', value: 5 }
+            { x: 1, y: 1, type: 'weapon', value: 2 },
+            { x: 2, y: 2, type: 'strength', value: 4 }
         ],
         obstacles: [],
         allowLoops: false,
-        hint: "💡 Чергуй 'Праворуч' і 'Вниз'",
+        hint: "💡 Чергуй 'Праворуч' і 'Вниз', збирай бонуси",
         difficulty: "Легко",
-        optimalSteps: 4
+        optimalSteps: 6
     },
     3: {
         name: "⚡ Збір ресурсів",
-        description: "Збери ВСІ бонуси!",
+        description: "Збери ВСІ бонуси для перемоги",
         gridSize: 7,
         startPos: { x: 0, y: 0 },
         finishPos: { x: 4, y: 0 },
-        startingStrength: 12,
+        startingStrength: 14,
         startingWeapon: 2,
-        monsterStrength: 15,
-        monsterDefense: 5,
+        monsterStrength: 18,
+        monsterDefense: 6,
         items: [
-            { x: 1, y: 0, type: 'strength', value: 8 },
-            { x: 2, y: 0, type: 'weapon', value: 4 },
-            { x: 3, y: 0, type: 'strength', value: 5 }
+            { x: 1, y: 0, type: 'strength', value: 10 },
+            { x: 2, y: 0, type: 'weapon', value: 3 },
+            { x: 3, y: 0, type: 'weapon', value: 2 }
         ],
         obstacles: [],
         allowLoops: false,
-        hint: "💡 Без ресурсів не переможеш!",
+        hint: "💡 Без усіх ресурсів не переможеш!",
         difficulty: "Легко",
         optimalSteps: 4
     },
     4: {
         name: "🗡️ Озброєння",
-        description: "Збери достатньо зброї",
+        description: "Збери зброю, обійди перешкоди",
         gridSize: 7,
         startPos: { x: 0, y: 0 },
         finishPos: { x: 3, y: 3 },
-        startingStrength: 18,
+        startingStrength: 25,
         startingWeapon: 0,
         monsterStrength: 15,
         monsterDefense: 6,
         items: [
             { x: 1, y: 1, type: 'weapon', value: 3 },
-            { x: 2, y: 2, type: 'weapon', value: 4 }
+            { x: 2, y: 2, type: 'weapon', value: 4 },
+            { x: 3, y: 2, type: 'strength', value: 5 }
         ],
-        obstacles: [],
+        obstacles: [
+            { x: 1, y: 0, type: 'rock' }
+        ],
         allowLoops: false,
-        hint: "💡 Зброя >= Захист монстра!",
+        hint: "💡 Зброя >= Захист монстра! Обійди камінь",
         difficulty: "Середньо",
         optimalSteps: 6
     },
