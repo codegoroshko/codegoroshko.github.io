@@ -92,25 +92,9 @@ body {
 }
 
 /* Адаптивна сітка */
-.grid-container {
-    width: 100%;
-}
-
 .grid-container .grid {
-    width: 100%;
     max-width: min(90vw, 500px);
     aspect-ratio: 1;
-}
-
-@media (min-width: 1024px) {
-    .grid-container {
-        flex: 0 0 38%;
-        max-width: 38%;
-    }
-
-    .grid-container .grid {
-        max-width: 100%;
-    }
 }
 
 .cell {
