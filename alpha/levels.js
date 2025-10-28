@@ -1,1 +1,0 @@
-export const LEVELS = {}; // Fallback if parsing failed
