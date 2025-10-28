@@ -25,7 +25,11 @@ export const DOM = {
         this.strength = document.getElementById('strength');
         this.modal = document.getElementById('modal');
         this.modalContent = document.getElementById('modalContent');
-// ... existing code ...
+        this.modalIcon = document.getElementById('modalIcon');
+        this.modalTitle = document.getElementById('modalTitle');
+        this.modalMessage = document.getElementById('modalMessage');
+        this.modalButtons = document.getElementById('modalButtons');
+        this.currentLevelSpan = document.getElementById('currentLevel');
         this.stepCounter = document.getElementById('stepCounter');
         this.stepCount = document.getElementById('stepCount');
         this.programCount = document.getElementById('programCount');
